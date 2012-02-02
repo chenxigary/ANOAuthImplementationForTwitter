@@ -31,14 +31,14 @@ public class OAuthAccessToken {
 	}
 	
 	private void getTimeStamp(){
-		//returns the timestamp as a string
+		//Calculates the timestamp
 		Date date = new Date();
 		String timeStamp=Long.toString((date.getTime()/1000));
 		mAuth.oauth_timestamp=timeStamp;
 	}
 	
 	private void getNonce(String timeStamp) throws UnsupportedEncodingException, NoSuchAlgorithmException{
-		//returns encyted timestamp as a nonce
+		//Calculates nonce with encrypted timestamp
 		MessageDigest m=MessageDigest.getInstance("MD5");
 		m.update(timeStamp.getBytes(),0,timeStamp.length());
 		mAuth.oauth_nonce=new BigInteger(1,m.digest()).toString(16);
@@ -46,8 +46,8 @@ public class OAuthAccessToken {
 	}
 	
 	private String calcSignatureBaseString() throws MalformedURLException, URISyntaxException, UnsupportedEncodingException{
-		//return the base string
-		//Calculate Base String
+		//returns the base string
+		//Creates Base String
 		//<HTTP method>&<canonicalized URL path>&<parameters>
 		
 		String last = new String(""
@@ -68,7 +68,7 @@ public class OAuthAccessToken {
 	}
 	
 	private void calcSignature(String base,String key) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException{
-		 //Calc the oauth_signature thank to Base64 class auther
+		 //Creates the oauth_signature 
 		 Mac mac = Mac.getInstance("HmacSHA1");
 		 SecretKeySpec secret = new SecretKeySpec(key.getBytes(), mac.getAlgorithm());
 		 mac.init(secret);
@@ -78,9 +78,9 @@ public class OAuthAccessToken {
 	
 	
 	private void post() throws IOException{
-		//gets the response if its ok
+		//gets the response if it's okay
 		
-		//should be auto not hard coded
+		//fix me , should be auto not hard coded
         String oAuthParameters = "OAuth " +
       		  "oauth_nonce=\""+mAuth.oauth_nonce+"\""+	
       		  ", oauth_signature_method=\""+mAuth.oauth_signature_method+"\""+

@@ -24,10 +24,10 @@ public class twit {
 	public static void main(String args[]) throws NoSuchAlgorithmException, URISyntaxException, InvalidKeyException, IOException {
 		
           mAuth = new Auth();
-          mAuth.oauth_consumer_key="Q28ibk9OVBdogUjjdp8DA";
+          mAuth.oauth_consumer_key="Q28*****************8DA";
           mAuth.oauth_signature_method="HMAC-SHA1";
           mAuth.oauth_version="1.0";
-          mAuth.oauth_consumer_secret="yz99vXY2sRELn8zvu2uTDEJziqDxkRn2tEM4Q6iILpY&";
+          mAuth.oauth_consumer_secret="yz99vX****************************Q6iILpY&";
           mRequestToken = new OAuthRequestToken(mAuth);
           
           
